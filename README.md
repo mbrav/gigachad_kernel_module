@@ -1,16 +1,22 @@
 # Gigachad Kernel module
 
-This is a simple Linux Kernel module. Try it inside a VM. Don't use on your install (unless you are a Gigachad)
+This is a simple Linux Kernel module. Try it inside a VM. Don't use on your install (unless you are a Gigachad).
 
 ![Gigachad loading his own Kernel module](https://i.imgflip.com/6c7jl7.png)
 
+All code is free to use. **Modifications in editors besides Vim / Neovim are not allowed.**
+
 ## Prerequisites
 
-On Debian-based distros run:
+On Debian-based distros Install:
 
 ```shell
 apt install linux-headers-$(uname -r) gcc make build-essential libncurses-dev exuberant-ctags
 ```
+
+Whereas, if you are on Arch, you probably don't even need to install anything because Arch is a Gigachad-teir distro by default.
+
+*I use Arch btw.*
 
 ## Building
 
@@ -48,7 +54,7 @@ To test whether the module run `dmesg` command to check if the follwing message 
 In case you get a similar error when running `make`:
 
 ```
-Skipping BTF generation for /home/user/linux_mod/mbrav.ko due to unavailability of vmlinux
+Skipping BTF generation for /home/user/linux_mod/gigachad_kernel_module.ko due to unavailability of vmlinux
 ```
 
 This is due to unavailability of vmlinux on your system. To remedy this, try installing the following package:

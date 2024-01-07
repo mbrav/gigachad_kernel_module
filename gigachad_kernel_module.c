@@ -8,7 +8,7 @@
 #include <linux/moduleparam.h>  /* Needed for definining module parameters */
 #include <linux/uaccess.h>
 #include <linux/proc_fs.h>      /* Needed for accesing /proc FS */
-#include <linux/version.h>      /* Needed for accesing kernel version info */ 
+#include <linux/version.h>      /* Needed for accesing kernel version info */
 
 // Module metadata
 MODULE_AUTHOR("mbrav <mbrav@protonmail.com>");
