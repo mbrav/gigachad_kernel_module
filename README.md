@@ -83,3 +83,6 @@ See the [following solution](https://github.com/aircrack-ng/rtl8188eus/issues/26
 make clean
 ```
 
+## Other info
+
+- [*The Linux Kernel Module Programming Guide*](https://github.com/sysprog21/lkmpg)
