@@ -19,8 +19,8 @@ all:
 install:
 	@echo "====== LOAD MODULES BEGIN ====="
 	cat /proc/modules | grep virgin_kernel_module || sudo insmod virgin_kernel_module.ko
-	cat /proc/modules | grep normie_kernel_module || sudo insmod normie_kernel_module.ko
-	cat /proc/modules | grep gigachad_kernel_module || sudo insmod gigachad_kernel_module.ko
+	cat /proc/modules | grep normie_kernel_module || sudo insmod normie_kernel_module.ko chad_level=1
+	cat /proc/modules | grep gigachad_kernel_module || sudo insmod gigachad_kernel_module.ko chad_level=69
 	@echo "======= LOAD MODULES END ======"
 	@echo "====== LOADED MODULES SHOW BEGIN ====="
 	@cat /proc/kallsyms | grep --color -E "(virgin|normie|gigachad)_kernel_module"

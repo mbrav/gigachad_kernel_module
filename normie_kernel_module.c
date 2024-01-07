@@ -7,7 +7,6 @@
 #include <linux/init.h>         /* Needed for the macros */
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/moduleparam.h>  /* Needed for definining module parameters */
-#include <linux/uaccess.h>
 #include <linux/proc_fs.h>      /* Needed for accesing /proc FS */
 #include <linux/version.h>      /* Needed for accesing kernel version info */
 
