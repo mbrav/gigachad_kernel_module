@@ -1,6 +1,7 @@
 # For Kbuild to include header files 
 # https://unix.stackexchange.com/questions/18143/how-to-include-local-header-files-in-linux-kernel-module
 # EXTRA_CFLAGS := -I$(src)/src/inc
+# EXTRA_CFLAGS= -Wvla
 
 # Define output module
 obj-m += virgin_kernel_module.o
@@ -20,7 +21,7 @@ install:
 	@echo "====== LOAD MODULES BEGIN ====="
 	cat /proc/modules | grep virgin_kernel_module || sudo insmod virgin_kernel_module.ko
 	cat /proc/modules | grep normie_kernel_module || sudo insmod normie_kernel_module.ko chad_level=1
-	cat /proc/modules | grep gigachad_kernel_module || sudo insmod gigachad_kernel_module.ko chad_level=69
+	cat /proc/modules | grep gigachad_kernel_module || sudo insmod gigachad_kernel_module.ko chad_level=69 sha256_length=32
 	@echo "======= LOAD MODULES END ======"
 	@echo "====== LOADED MODULES SHOW BEGIN ====="
 	@cat /proc/kallsyms | grep --color -E "(virgin|normie|gigachad)_kernel_module"

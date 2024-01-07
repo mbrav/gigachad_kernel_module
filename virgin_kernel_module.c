@@ -9,7 +9,7 @@
 // Module metadata
 MODULE_AUTHOR("mbrav");
 MODULE_DESCRIPTION("Virgin Kernel Module");
-MODULE_LICENSE("GPL-2.0+");
+MODULE_LICENSE("GPL");
 
 // Custom init method
 static int __init custom_init(void) {

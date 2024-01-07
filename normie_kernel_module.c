@@ -13,7 +13,7 @@
 // Module metadata
 MODULE_AUTHOR("mbrav <mbrav@protonmail.com>");
 MODULE_DESCRIPTION("Normie Kernel Module");
-MODULE_LICENSE("GPL-2.0+");
+MODULE_LICENSE("GPL");
 
 // Define module parameters
 static unsigned int chad_level= 1;
