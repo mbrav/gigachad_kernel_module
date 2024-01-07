@@ -26,10 +26,10 @@ make
 
 ### Loading the module into your Kernel
 
-To load the the module, you must install the `.ko` file:
+To load the the module, you must install the `.ko` file. You can do so with the following make command:
 
 ```shell
-sudo insmod gigachad_kernel_module.ko
+sudo make install
 ```
 
 ### Unloading module from your Kernel
@@ -37,7 +37,7 @@ sudo insmod gigachad_kernel_module.ko
 To unload the module from your kernel run:
 
 ```shell
-sudo rmmod gigachad_kernel_module
+sudo make uninstall
 ```
 
 ### Testing if the module was loaded

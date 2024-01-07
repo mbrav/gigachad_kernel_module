@@ -1,6 +1,6 @@
 /*
- * gigachad_kernel_module.c - The Chad kernel module.
- * Registers a new /proc/chad proc file
+ * normie_kernel_module.c - The Normie kernel module.
+ * Registers a new /proc/gigachad proc file
  */
 
 // Include Linux Kernel libs
@@ -13,11 +13,11 @@
 
 // Module metadata
 MODULE_AUTHOR("mbrav <mbrav@protonmail.com>");
-MODULE_DESCRIPTION("Gigachad Kernel Module");
+MODULE_DESCRIPTION("Normie Kernel Module");
 MODULE_LICENSE("GPL-2.0+");
 
 // Define module parameters
-static unsigned int chad_level= 420;
+static unsigned int chad_level= 1;
 module_param(chad_level, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(chad_level, "Specify what chad level are you");
 
@@ -26,7 +26,7 @@ MODULE_PARM_DESC(chad_level, "Specify what chad level are you");
 #endif
 
 // Register new /proc name
-#define procfs_name "gigachad"
+#define procfs_name "normie"
 
 static struct proc_dir_entry *our_proc_file;
 
@@ -36,7 +36,7 @@ static ssize_t procfile_read(
         char __user *buffer,
         size_t buffer_length, loff_t *offset)
 {
-    char s[23] = "Hello GigaChad module!\n";
+    char s[23] = "Hello Normie module!\n";
     int len = sizeof(s);
     ssize_t ret = len;
     if (*offset >= len || copy_to_user(buffer, s, len)) {
@@ -64,12 +64,12 @@ struct Player {
   int score;
 };
 
-void chad_structs(void) {
+void normie_structs(void) {
   struct Player player1;
   struct Player player2;
 
-  player1.score = chad_level;
-  player2.score = 12;
+  player1.score = 1234;
+  player2.score = chad_level;
   strcpy(player1.name, "Chad");
   strcpy(player2.name, "Normie");
 
@@ -85,20 +85,17 @@ static int __init custom_init(void) {
         pr_alert("Error:Could not initialize /proc/%s\n", procfs_name);
         return -ENOMEM;
     }
-    pr_info("B============================o\n");
-    pr_info("Gigachad Kernel Module loaded!\n");
+    pr_info("Normie Kernel Module loaded!\n");
     pr_info("chad_level: %d\n", chad_level);
     pr_info("proc: /proc/%s created\n", procfs_name);
-    chad_structs();
+    normie_structs();
     return 0;
 }
 
 // Custom exit method
 static void __exit custom_exit(void) {
     proc_remove(our_proc_file);
-    pr_info("B============================o\n");
-    pr_info("Gigachad Kernel Module unloaded!\n");
-    pr_info("proc: /proc/%s Removed!\n", procfs_name);
+    pr_info("Normie Kernel Module unloaded!\n");
 }
 
 // Load modules
