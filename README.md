@@ -42,7 +42,7 @@ sudo make uninstall
 
 ### Testing if the module was loaded
 
-To test whether the module run `dmesg` command to check if the follwing message are present:
+To test whether the module run `dmesg` command to check if the following message are present:
 
 ```shell
 [ 3433.692029] Gigachad Kernel Module loaded!
@@ -75,7 +75,7 @@ If the vmlinux file is present, copy it to the appropriate directory using the f
 cp /sys/kernel/btf/vmlinux /usr/lib/modules/$(uname -r)/build/
 ```
 
-If after runing `make` once again you continue getting the error:
+If after running `make` once again you continue getting the error:
 
 ```
 /bin/sh: 1: ./tools/bpf/resolve_btfids/resolve_btfids: not found
