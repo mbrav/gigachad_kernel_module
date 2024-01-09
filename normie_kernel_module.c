@@ -4,11 +4,12 @@
  */
 
 // Include Linux Kernel libs
-#include <linux/init.h>         /* Needed for the macros */
-#include <linux/module.h>       /* Needed by all modules */
-#include <linux/moduleparam.h>  /* Needed for definining module parameters */
-#include <linux/proc_fs.h>      /* Needed for accesing /proc FS */
-#include <linux/version.h>      /* Needed for accesing kernel version info */
+#include <linux/init.h>        /* Needed for the macros */
+#include <linux/module.h>      /* Needed by all modules */
+#include <linux/moduleparam.h> /* Needed for definining module parameters */
+#include <linux/proc_fs.h>     /* Needed for accesing /proc FS */
+#include <linux/uaccess.h>     /* Needed for copy_from_user */
+#include <linux/version.h>     /* Needed for accesing kernel version info */
 
 // Module metadata
 MODULE_AUTHOR("mbrav <mbrav@protonmail.com>");
@@ -16,7 +17,7 @@ MODULE_DESCRIPTION("Normie Kernel Module");
 MODULE_LICENSE("GPL");
 
 // Define module parameters
-static unsigned int chad_level= 1;
+static unsigned int chad_level = 1;
 module_param(chad_level, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 MODULE_PARM_DESC(chad_level, "Specify what chad level are you");
 
@@ -30,22 +31,19 @@ MODULE_PARM_DESC(chad_level, "Specify what chad level are you");
 static struct proc_dir_entry *our_proc_file;
 
 // Read procfile function
-static ssize_t procfile_read(
-        struct file *file_pointer, 
-        char __user *buffer,
-        size_t buffer_length, loff_t *offset)
-{
-    char s[23] = "Hello Normie module!\n";
-    int len = sizeof(s);
-    ssize_t ret = len;
-    if (*offset >= len || copy_to_user(buffer, s, len)) {
-        pr_info("copy_to_user failed\n");
-        ret = 0;
-    } else {
-        pr_info("procfile read %s\n", file_pointer->f_path.dentry->d_name.name);
-        *offset += len;
-    }
-    return ret;
+static ssize_t procfile_read(struct file *file_pointer, char __user *buffer,
+                             size_t buffer_length, loff_t *offset) {
+  char s[23] = "Hello Normie module!\n";
+  int len = sizeof(s);
+  ssize_t ret = len;
+  if (*offset >= len || copy_to_user(buffer, s, len)) {
+    pr_info("copy_to_user failed\n");
+    ret = 0;
+  } else {
+    pr_info("procfile read %s\n", file_pointer->f_path.dentry->d_name.name);
+    *offset += len;
+  }
+  return ret;
 }
 
 #ifdef HAVE_PROC_OPS
@@ -78,26 +76,25 @@ void normie_structs(void) {
 
 // Custom init method
 static int __init custom_init(void) {
-    our_proc_file = proc_create(procfs_name, 0644, NULL, &proc_file_fops);
-    if (NULL == our_proc_file) {
-        proc_remove(our_proc_file);
-        pr_alert("Error:Could not initialize /proc/%s\n", procfs_name);
-        return -ENOMEM;
-    }
-    pr_info("Normie Kernel Module loaded!\n");
-    pr_info("chad_level: %d\n", chad_level);
-    pr_info("proc: /proc/%s created\n", procfs_name);
-    normie_structs();
-    return 0;
+  our_proc_file = proc_create(procfs_name, 0644, NULL, &proc_file_fops);
+  if (NULL == our_proc_file) {
+    proc_remove(our_proc_file);
+    pr_alert("Error:Could not initialize /proc/%s\n", procfs_name);
+    return -ENOMEM;
+  }
+  pr_info("Normie Kernel Module loaded!\n");
+  pr_info("chad_level: %d\n", chad_level);
+  pr_info("proc: /proc/%s created\n", procfs_name);
+  normie_structs();
+  return 0;
 }
 
 // Custom exit method
 static void __exit custom_exit(void) {
-    proc_remove(our_proc_file);
-    pr_info("Normie Kernel Module unloaded!\n");
+  proc_remove(our_proc_file);
+  pr_info("Normie Kernel Module unloaded!\n");
 }
 
 // Load modules
 module_init(custom_init);
 module_exit(custom_exit);
-
